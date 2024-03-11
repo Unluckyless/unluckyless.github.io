@@ -1,0 +1,70 @@
+<h1>使用仓颉实现链表</h1>
+<h2>先定义节点</h2>
+<pre><code>class Node&lt;T&gt;{
+    var elem : Option&lt;T&gt; = None
+    var next : Option&lt;Node&lt;T&gt;&gt; = None   //使用Option来实现空指针的功能
+    var last : Option&lt;Node&lt;T&gt;&gt; = None
+}
+</code></pre>
+<h3>定义链表</h3>
+<pre><code>class List&lt;T&gt;{
+    var size: Int64     //定义链表的size
+    var head: Node&lt;T&gt;   //定义链表的头节点
+    var tail: Node&lt;T&gt;   //定义链表的尾巴节点
+
+    public init() {               //链表的默认构造函数
+        this.size = 0             //链表的size初始化为0
+        this.head = Node&lt;T&gt;()     //为头结点初始化一个节点
+        this.tail = this.head     //空链表时尾巴节点和头结点相同
+    }
+
+    public init(elem: T, n:Int64){   // 构建一个有n个节点，每个节点的值为elem的链表
+        this.size = 0                //初始化链表
+        this.head = Node&lt;T&gt;()
+        this.tail = this.head
+
+        for(_ in 0..n){                        
+            tail.next = Node&lt;T&gt;()              //新建一个节点并赋值给尾指针的next
+            if(let Some(node) &lt;- tail.next){   //  if-let
+                node.elem = elem              //  为新的节点赋值
+                tail = node                   //尾指针向后移动
+                size++
+            }
+
+        }
+    }
+
+    public func append(elem : T){
+        var newNode = Node&lt;T&gt;()
+        newNode.elem = elem
+        tail.next = newNode
+        if(let Some(node)&lt;-tail.next){
+            tail = node
+            size++
+        }
+
+    }
+
+    public func isEmpty(){
+        if (size == 0){
+            return true
+        }else{
+            return false
+        }
+    }
+
+    public func clear(){
+        while(let Some(node) &lt;- this.head.next){
+            this.head = node
+            this.size--
+        }
+    }
+
+    public func getSize(){
+        return this.size
+    }
+
+}
+
+
+</code></pre>
