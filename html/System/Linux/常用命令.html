@@ -40,6 +40,26 @@
     <div id="box">
       <div id="content">
         <h1>Linux 系统常用命令</h1>
+        <h2>sh、bash、source</h2>
+        <p><code>sh</code>、<code>bash</code>和<code>source</code>是Linux和类Unix系统中常见的命令，它们在Shell脚本和命令行操作中扮演着不同的角色：</p>
+        <h3>sh</h3>
+        <ul>
+          <li><strong>sh</strong> 是Unix系统上的原始shell程序，由Steve Bourne编写。它是最早的Shell脚本语言之一，提供了基本的脚步执行功能。随着时间的推移，出现了许多基于<code>sh</code>的扩展和改进版本，如<code>bash</code>、<code>zsh</code>、<code>ksh</code>等。</li>
+          <li>在许多系统中，<code>sh</code>已经被更现代的Shell如<code>bash</code>代替，但任然被保留为指向系统默认Shell的链接，或者用于兼容性目的。</li>
+          <li>使用<code>sh</code>运行脚本通常意味着脚本将在一个新的shell进程中执行，而不是当前的shell环境中。例如，<code>sh script.sh</code>会启动 一个新的<code>sh</code>进程来运行<code>script.sh</code>。</li>
+        </ul>
+        <h3>bash</h3>
+        <ul>
+          <li><strong>bash</strong>:是<code>sh</code>的一个自由软件替代版本，由GNU项目开发。<code>bash</code>兼容<code>sh</code>（意味着他可以运行<code>sh</code>脚本），但添加了许多其他功能，如命令行补全，命令历史、成学会完成等，使其成为许多Linux发行版和MacOS的默认shell。</li>
+          <li>使用<code>bash</code>运行脚本会在<code>bash</code>环境中执行该脚本，可以访问<code>bash</code>的索引扩展功能和改进。例如，<code>bash script.sh</code>会使用<code>bash</code>来运行<code>script.sh</code>。</li>
+        </ul>
+        <h3>source</h3>
+        <ul>
+          <li><strong>source</strong> 是一个shell命令，用于当前shell环境中读取并执行指定的Shell脚本文件。这意味着脚本中定义的任何变量或函数都将在当前shell会话中可用，而不是像使用<code>sh</code>或<code>bash</code>命令那样在新的shell进程中执行脚本。</li>
+          <li><code>source</code>命令使得脚本对当前shell环境产生影响，常用于配置环境变量或定义函数等场景。</li>
+          <li>在<code>bash</code>中，<code>.</code>(点命令)时<code>source</code>的同义词，即<code>source script.sh</code>和<code>. script.sh</code>在<code>bash</code>中作用相同。</li>
+        </ul>
+        <p>总结来说，<code>sh</code>和<code>bash</code>都可以用来启动新的shell进程执行脚本，其中<code>bash</code>提供了比<code>sh</code>更丰富的特性和改进。<code>source</code>或（<code>.</code>）命令用于在当前shell环境中执行脚本，使脚本中的变量或函数更改对当前会话有效。</p>
         <h2>用户、用户组</h2>
         <p>在Ubuntu中，可以使用<code>useradd</code>命令来创建新的用户并将其添加到特定的用户组。
           使用命令：</p>
