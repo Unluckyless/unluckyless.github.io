@@ -1,0 +1,11 @@
+#box {
+    margin-top: 80px;
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
+    height: auto; /* 容器高度为视窗的高度 */
+  }
+  #content {
+    width: 80%; /* 或者固定的宽度 */
+  }
+  

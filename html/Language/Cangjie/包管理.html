@@ -1,7 +1,69 @@
-<h1>仓颉的包管理</h1>
-<p>随着项目的规模不断地扩大，仅在一个超大文件管理源代码变得十分困难。这时可以将源代码根据功能进行分组，并且不同功能的代码分开管理，在使用时，通过导入对应的输出文件使用相应的功能，或者通过不同功能的交互与组合实现更加复杂的特性，是的项目管理更加高效。</p>
-<p><strong>在仓颉中有两个非常重要的概念，一个是包（package），一个是模块（module）：</strong></p>
-<ul>
-<li>在仓颉编程语言中，包是<strong>编译的最小单元</strong>，每个包可以单独输出AST文件、静态库文件、动态库文件等产物。每个包有自己的名字空间，在同一个包内不允许有同名的的顶层定义或声明（函数重载除外）。一个包中可以包含多个源文件。</li>
-<li>模块是若干包的集合，是第三方开发者<strong>发布的最小单元</strong>。一个模块的程序入口只能在其根目录下，它的顶层最多只能有一个作文程序入口的<code>main</code>,该<code>main</code>没有参数或参数类型为<code>Array&lt;String&gt;</code>，返回类型为整数类型或Unit类型</li>
-</ul>
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>Unluckyless 博客</title>
+    <link rel="icon" href="../../../img/闪耀狗头.jpg" type="image/jpg">
+    <link rel="stylesheet" href="../../../css/unit.css">
+    <link rel="stylesheet" href="../../../css/content.css">
+
+  </head>
+
+  <body>
+
+    <div class="header" id="header">
+      <div class="header-left">
+        <div class="logo">
+          <a href="index.html">
+            <img src="../../../img/闪耀狗头.jpg" alt="Website Logo" class="navbar-logo">
+          </a>
+        </div>
+        <div class="name">
+          <h3>Unluckyless' Blog</h3>
+        </div>
+      </div>
+      <div class="nav">
+        <ul>
+          <li class="active">
+            <a href="index.html">首页</a>
+          </li>
+          <li>
+            <a href="">gitee</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+    <!-- layout.html -->
+    <div id="box">
+      <div id="content">
+        <h1>仓颉的包管理</h1>
+        <p>随着项目的规模不断地扩大，仅在一个超大文件管理源代码变得十分困难。这时可以将源代码根据功能进行分组，并且不同功能的代码分开管理，在使用时，通过导入对应的输出文件使用相应的功能，或者通过不同功能的交互与组合实现更加复杂的特性，是的项目管理更加高效。</p>
+        <p><strong>在仓颉中有两个非常重要的概念，一个是包（package），一个是模块（module）：</strong></p>
+        <ul>
+          <li>在仓颉编程语言中，包是<strong>编译的最小单元</strong>，每个包可以单独输出AST文件、静态库文件、动态库文件等产物。每个包有自己的名字空间，在同一个包内不允许有同名的的顶层定义或声明（函数重载除外）。一个包中可以包含多个源文件。</li>
+          <li>模块是若干包的集合，是第三方开发者<strong>发布的最小单元</strong>。一个模块的程序入口只能在其根目录下，它的顶层最多只能有一个作文程序入口的<code>main</code>,该<code>main</code>没有参数或参数类型为<code>Array&lt;String&gt;</code>，返回类型为整数类型或Unit类型</li>
+        </ul>
+      </div>
+    </div>
+
+
+
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© 2024 My Website. All rights reserved.</p>
+        <ul class="footer-links">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+    </footer>
+
+
+  </body>
+
+</html>

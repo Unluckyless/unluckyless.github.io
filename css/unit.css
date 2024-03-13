@@ -98,10 +98,12 @@ code {
     border: 1px solid #ccc;
   
     /* 行内代码块的换行 */
-    white-space: pre-wrap;
+    white-space: pre;
+    overflow-x: auto;
   
     /* 字符间距 */
     letter-spacing: 0.5px;
+    line-height: 1.5;
   }
   
   /* 可选：为了增强多行代码块的显示效果，你可以为<pre>元素也添加样式 */

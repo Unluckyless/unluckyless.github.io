@@ -1,13 +1,54 @@
-<h1>使用仓颉实现链表</h1>
-<h2>先定义节点</h2>
-<pre><code>class Node&lt;T&gt;{
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>Unluckyless 博客</title>
+    <link rel="icon" href="../../../img/闪耀狗头.jpg" type="image/jpg">
+    <link rel="stylesheet" href="../../../css/unit.css">
+    <link rel="stylesheet" href="../../../css/content.css">
+
+  </head>
+
+  <body>
+
+    <div class="header" id="header">
+      <div class="header-left">
+        <div class="logo">
+          <a href="index.html">
+            <img src="../../../img/闪耀狗头.jpg" alt="Website Logo" class="navbar-logo">
+          </a>
+        </div>
+        <div class="name">
+          <h3>Unluckyless' Blog</h3>
+        </div>
+      </div>
+      <div class="nav">
+        <ul>
+          <li class="active">
+            <a href="index.html">首页</a>
+          </li>
+          <li>
+            <a href="">gitee</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+    <!-- layout.html -->
+    <div id="box">
+      <div id="content">
+        <h1>使用仓颉实现链表</h1>
+        <h2>先定义节点</h2>
+        <pre><code>class Node&lt;T&gt;{
     var elem : Option&lt;T&gt; = None
     var next : Option&lt;Node&lt;T&gt;&gt; = None   //使用Option来实现空指针的功能
     var last : Option&lt;Node&lt;T&gt;&gt; = None
 }
 </code></pre>
-<h3>定义链表</h3>
-<pre><code>class List&lt;T&gt;{
+        <h3>定义链表</h3>
+        <pre><code>class List&lt;T&gt;{
     var size: Int64     //定义链表的size
     var head: Node&lt;T&gt;   //定义链表的头节点
     var tail: Node&lt;T&gt;   //定义链表的尾巴节点
@@ -68,3 +109,24 @@
 
 
 </code></pre>
+      </div>
+    </div>
+
+
+
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© 2024 My Website. All rights reserved.</p>
+        <ul class="footer-links">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+    </footer>
+
+
+  </body>
+
+</html>
