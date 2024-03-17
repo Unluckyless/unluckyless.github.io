@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>Unluckyless 博客</title>
+    <link rel="icon" href="../../../img/闪耀狗头.jpg" type="image/jpg">
+    <link rel="stylesheet" href="../../../css/unit.css">
+    <link rel="stylesheet" href="../../../css/content.css">
+
+  </head>
+
+  <body>
+
+    <div class="header" id="header">
+      <div class="header-left">
+        <div class="logo">
+          <a href="index.html">
+            <img src="../../../img/闪耀狗头.jpg" alt="Website Logo" class="navbar-logo">
+          </a>
+        </div>
+        <div class="name">
+          <h3>Unluckyless' Blog</h3>
+        </div>
+      </div>
+      <div class="nav">
+        <ul>
+          <li class="active">
+            <a href="../../../index.html">首页</a>
+          </li>
+          <li>
+            <a href="">gitee</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+    <!-- layout.html -->
+    <div id="box">
+      <div id="content">
+        <h1>二叉树</h1>
+        <p><a href="https://programmercarl.com/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.html#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E7%A7%8D%E7%B1%BB">参考链接</a></p>
+        <h2>一、二叉树的存储方式</h2>
+        <ul>
+          <li>1、链式存储：通过指针把节点连接起来</li>
+          <li>2、顺序存储：使用数组存储，如果父节点的下标是i，那么它的左孩子是i*2+1,右孩子是i*2+2</li>
+        </ul>
+        <h2>二、二叉树的遍历</h2>
+        <h3>1.二叉树的递归遍历</h3>
+        <h4>前序遍历</h4>
+        <pre><code>
+void traversal(TreeNode* cur, vector&lt;int&gt;&amp; vec) {
+    if (cur == NULL) return;
+    vec.push_back(cur-&gt;val);    // 中
+    traversal(cur-&gt;left, vec);  // 左
+    traversal(cur-&gt;right, vec); // 右
+}
+
+</code></pre>
+        <h4>中序遍历</h4>
+        <pre><code>void traversal(TreeNode* cur, vector&lt;int&gt;&amp; vec) {
+    if (cur == NULL) return;
+    traversal(cur-&gt;left, vec);  // 左
+    vec.push_back(cur-&gt;val);    // 中
+    traversal(cur-&gt;right, vec); // 右
+}
+</code></pre>
+        <h4>后序遍历</h4>
+        <pre><code>void traversal(TreeNode* cur, vector&lt;int&gt;&amp; vec) {
+    if (cur == NULL) return;
+    traversal(cur-&gt;left, vec);  // 左
+    traversal(cur-&gt;right, vec); // 右
+    vec.push_back(cur-&gt;val);    // 中
+}
+</code></pre>
+        <h3>2.二叉树的迭代遍历</h3>
+        <h4>迭代法中序遍历</h4>
+        <pre><code>class Solution {
+public:
+    vector&lt;int&gt; inorderTraversal(TreeNode* root) {
+        vector&lt;int&gt; result;
+        stack&lt;TreeNode*&gt; st;
+        if (root != NULL) st.push(root);
+        while (!st.empty()) {
+            TreeNode* node = st.top();
+            if (node != NULL) {
+                st.pop(); // 将该节点弹出，避免重复操作，下面再将右中左节点添加到栈中
+                if (node-&gt;right) st.push(node-&gt;right);  // 添加右节点（空节点不入栈）
+
+                st.push(node);                          // 添加中节点
+                st.push(NULL); // 中节点访问过，但是还没有处理，加入空节点做为标记。
+
+                if (node-&gt;left) st.push(node-&gt;left);    // 添加左节点（空节点不入栈）
+            } else { // 只有遇到空节点的时候，才将下一个节点放进结果集
+                st.pop();           // 将空节点弹出
+                node = st.top();    // 重新取出栈中元素
+                st.pop();
+                result.push_back(node-&gt;val); // 加入到结果集
+            }
+        }
+        return result;
+    }
+};
+</code></pre>
+        <h4>迭代法前序遍历</h4>
+        <pre><code>class Solution {
+public:
+    vector&lt;int&gt; preorderTraversal(TreeNode* root) {
+        vector&lt;int&gt; result;
+        stack&lt;TreeNode*&gt; st;
+        if (root != NULL) st.push(root);
+        while (!st.empty()) {
+            TreeNode* node = st.top();
+            if (node != NULL) {
+                st.pop();
+                if (node-&gt;right) st.push(node-&gt;right);  // 右
+                if (node-&gt;left) st.push(node-&gt;left);    // 左
+                st.push(node);                          // 中
+                st.push(NULL);
+            } else {
+                st.pop();
+                node = st.top();
+                st.pop();
+                result.push_back(node-&gt;val);
+            }
+        }
+        return result;
+    }
+};
+</code></pre>
+        <h4>迭代法后序遍历</h4>
+        <pre><code>class Solution {
+public:
+    vector&lt;int&gt; postorderTraversal(TreeNode* root) {
+        vector&lt;int&gt; result;
+        stack&lt;TreeNode*&gt; st;
+        if (root != NULL) st.push(root);
+        while (!st.empty()) {
+            TreeNode* node = st.top();
+            if (node != NULL) {
+                st.pop();
+                st.push(node);                          // 中
+                st.push(NULL);
+
+                if (node-&gt;right) st.push(node-&gt;right);  // 右
+                if (node-&gt;left) st.push(node-&gt;left);    // 左
+
+            } else {
+                st.pop();
+                node = st.top();
+                st.pop();
+                result.push_back(node-&gt;val);
+            }
+        }
+        return result;
+    }
+};
+</code></pre>
+        <h3>3.二叉树的层序遍历</h3>
+        <p>实现二叉树的层序遍历需要借助队列来实现，队列先进先出，符合一层一层遍历的逻辑。</p>
+        <pre><code>class Solution {
+public:
+    vector&lt;vector&lt;int&gt;&gt; levelOrder(TreeNode* root) {
+        queue&lt;TreeNode*&gt; que;
+        if (root != NULL) que.push(root);
+        vector&lt;vector&lt;int&gt;&gt; result;
+        while (!que.empty()) {
+            int size = que.size();
+            vector&lt;int&gt; vec;
+            // 这里一定要使用固定大小size，不要使用que.size()，因为que.size是不断变化的
+            for (int i = 0; i &lt; size; i++) {
+                TreeNode* node = que.front();
+                que.pop();
+                vec.push_back(node-&gt;val);
+                if (node-&gt;left) que.push(node-&gt;left);
+                if (node-&gt;right) que.push(node-&gt;right);
+            }
+            result.push_back(vec);
+        }
+        return result;
+    }
+};
+</code></pre>
+      </div>
+    </div>
+
+
+
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© 2024 My Website. All rights reserved.</p>
+        <ul class="footer-links">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+    </footer>
+
+
+  </body>
+
+</html>
