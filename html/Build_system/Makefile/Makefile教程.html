@@ -38,7 +38,25 @@
 
     <!-- layout.html -->
     <div id="box">
-      <div id="content"></div>
+      <div id="content">
+        <h1>Makefile 教程</h1>
+        <p>Linux的<code>make</code>程序用来自动化编译大型源码。<code>make</code>能自动化完成这些工作，是因为项目提供了一个Makefile文件，它负责告诉<code>make</code>，如何编译和链接程序。<br>
+          <code>make</code>虽然最初是针对C语言开发，但它实际上并不限定于C语言，而是可以应用到任意项目，甚至不是编程语言。
+        </p>
+        <h2>Makefile的安装</h2>
+        <p>自Ubuntu中，可以直接使用<code>apt</code>安装</p>
+        <pre><code>$ sudo apt install build-essential
+</code></pre>
+        <p>安装完成后，可以输入<code>make -v</code>验证：</p>
+        <pre><code>$ make -v
+
+GNU Make 4.3
+</code></pre>
+        <h2>Makefile基础</h2>
+        <p>在Linux环境下，当我们输入<code>make</code>命令时，它就在当前目录查找一个名为<code>Makefile</code>的文件，然后，根据这个文件定义的规则，自动化地执行任意命令，包括编译命令。</p>
+        <p>我们举个例子：在当前目录下，有三个文本文件：<code>a.txt</code>、<code>b.txt</code>和<code>c.txt</code>。<br>
+          现在我们要合并<code>a.txt</code>与<code>b.txt</code>，生成中间文件<code>m.txt</code>，再用</p>
+      </div>
     </div>
 
 
