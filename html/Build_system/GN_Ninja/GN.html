@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>Unluckyless 博客</title>
+    <link rel="icon" href="../../../img/闪耀狗头.jpg" type="image/jpg">
+    <link rel="stylesheet" href="../../../css/unit.css">
+    <link rel="stylesheet" href="../../../css/content.css">
+
+  </head>
+
+  <body>
+
+    <div class="header" id="header">
+      <div class="header-left">
+        <div class="logo">
+          <a href="../../../index.html">
+            <img src="../../../img/闪耀狗头.jpg" alt="Website Logo" class="navbar-logo">
+          </a>
+        </div>
+        <div class="name">
+          <h3>Unluckyless' Blog</h3>
+        </div>
+      </div>
+      <div class="nav">
+        <ul>
+          <li class="active">
+            <a href="../../../index.html">首页</a>
+          </li>
+          <li>
+            <a href="">gitee</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+    <!-- layout.html -->
+    <div id="box">
+      <div id="content">
+        <h1>GN介绍</h1>
+        <p><code>GN</code>(Generate Ninja)是一个元构建系统，用于生成<code>Ninja</code>构建文件。它最初由Google开发，用于Chromium项目。<code>GN</code>的主要目标是提供一个快速灵活的方式来描述构建配置，优化构建时间，并简化大型项目构建过程。</p>
+        <p><strong><a href="./GN%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95.md">GN使用方法</a></strong></p>
+        <h2>核心特性</h2>
+        <p>1、<strong>生成Ninja文件：</strong><code>GN</code>生成的是<code>Ninja</code>构建文件，<code>Ninja</code>是一个小型但极其快速的构建系统，专注于运行构建任务。<br>
+          2、<strong>性能优化：</strong><code>GN</code>被设计为快速执行，特别是在增量构建场景下，它能够快速确定哪些部分需要重新构建。<br>
+          3、<strong>依赖管理：</strong><code>GN</code>提供了强大的依赖管理功能，能够处理复杂的项目依赖关系，包括条件依赖。<br>
+          4、<strong>可扩展性和灵活性：</strong><code>GN</code>提供了丰富的构建规则和配置选项，支持各种复杂的项目不急和构建需求。<br>
+          5、<strong>跨平台支持：</strong><code>GN</code>可以生成适用于多个平台（如Windows、macOS、Linux等）的构建文件，支持跨平台开发。</p>
+        <h2>工作流程</h2>
+        <p>1、<strong>编写<code>.gn</code>文件：</strong> 开发者首先需要编写<code>.gn</code>文件（及相关的<code>.gni</code>文件），这些文件定义了项目的源文件、依赖库、编译选项等构建规则。<br>
+          2、<strong>运行<code>gn gen</code>：</strong> 通过执行<code>gn gen</code>命令及指定的输出目录，<code>GN</code>读取这些构建配置文件，解析项目的依赖关系，并生成相应的<code>Ninja</code>构建文件。<br>
+          3、<strong>构建项目：</strong> 一旦<code>Ninja</code>文件被生成，开发者就可以使用<code>Ninja</code>来构建项目。<code>Ninja</code>负责执行编译、链接等具体的构建任务。</p>
+      </div>
+    </div>
+
+
+
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© 2024 My Website. All rights reserved.</p>
+        <ul class="footer-links">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+    </footer>
+
+
+  </body>
+
+</html>

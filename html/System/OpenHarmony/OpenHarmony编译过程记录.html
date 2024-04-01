@@ -15,7 +15,7 @@
     <div class="header" id="header">
       <div class="header-left">
         <div class="logo">
-          <a href="index.html">
+          <a href="../../../index.html">
             <img src="../../../img/闪耀狗头.jpg" alt="Website Logo" class="navbar-logo">
           </a>
         </div>
@@ -212,6 +212,14 @@ pip3 install six --upgrade --ignore-installed six
 
 </code></pre>
         <h3>5.2 hb方式</h3>
+        <pre><code># 首先使用 hb set命令选择设备
+$ hb set
+# 编译
+$ hb build
+
+# 指定编译目标
+$ hb build -T target //target 换成目标名字
+</code></pre>
         <h2>6 遇到的问题和解决方案</h2>
         <ul>
           <li>
@@ -231,8 +239,11 @@ pip3 install six --upgrade --ignore-installed six
             <p>原因：未知，重新安装一下并且重新修改一下<code>./bashrc</code>后可以运行，很奇怪，不知道为啥</p>
           </li>
           <li>
-            <p><strong>必须继承一个json</strong>
-              不知道为什么，使用rich会报错，但是使用default没问题，需要研究</p>
+            <p><strong>必须继承一个json</strong><br>
+              不知道为什么，使用rich会报错，但是使用default没问题，需要研究
+              在4.0版本中，必须继承rich和chipset<br>
+              在4.1版本中，必须继承rich</p>
+            <p>某些子系统和组件不满足就会报错</p>
           </li>
         </ul>
       </div>

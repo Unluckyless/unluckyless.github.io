@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>Unluckyless 博客</title>
+    <link rel="icon" href="../../../img/闪耀狗头.jpg" type="image/jpg">
+    <link rel="stylesheet" href="../../../css/unit.css">
+    <link rel="stylesheet" href="../../../css/content.css">
+
+  </head>
+
+  <body>
+
+    <div class="header" id="header">
+      <div class="header-left">
+        <div class="logo">
+          <a href="../../../index.html">
+            <img src="../../../img/闪耀狗头.jpg" alt="Website Logo" class="navbar-logo">
+          </a>
+        </div>
+        <div class="name">
+          <h3>Unluckyless' Blog</h3>
+        </div>
+      </div>
+      <div class="nav">
+        <ul>
+          <li class="active">
+            <a href="../../../index.html">首页</a>
+          </li>
+          <li>
+            <a href="">gitee</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+    <!-- layout.html -->
+    <div id="box">
+      <div id="content">
+        <h1>GN使用方法</h1>
+        <p><a href="https://www.cnblogs.com/bigben0123/p/12626833.html">参考链接</a></p>
+        <h2>运行 <code>GN</code></h2>
+        <p>对于大型项目，GN是通过源代码检查进行版本控制和分发的。用户只需从命令行运行<code>gn</code>即可。</p>
+        <h2>构建设置</h2>
+        <p>和其他一些构建系统不同，使用GN，可以使用所需的设置来设置自己的构建目录。这使得用户可以根据需要并行维护尽可能多的不同构建。<br>
+          设置构建目录后，如果再该项目中构建时Ninja文件已经过期，他们将自动生成，因此不必重新运行GN。<br>
+          要创建构建目录：</p>
+        <pre><code>$ gn gen out/my_build
+# 只是产生需要的目录。所以这个不用重复执行。以后哪怕改了gn文件，只要做ninja编译就行。ninja会自动检查到更改而重新用gn生成ninja。
+</code></pre>
+        <h2>传递构建参数</h2>
+        <p>通过运行以下命令在构建目录上设置构建参数：</p>
+        <pre><code>$ gn args out/my_build
+</code></pre>
+        <p>这将弹出一个编辑器，在该文件中输入构建参数，如下所示：</p>
+        <pre><code>is_component_build = true
+is_debug = false
+</code></pre>
+        <p>可用的变量取决于你的构建。可以通过输入以下命令来查看可用参数及其默认值的列表</p>
+        <pre><code>$ gn args --list out/my_build  查看有可设置的变量列表
+</code></pre>
+        <p>注意，必须为这个命令指定构建目录，因为可用参数会根据构建而变化。</p>
+        <h2>交叉编译到模板操作系统或架构</h2>
+        <p>运行<code>gn args out/Default</code> （根据需要替换目录）并未常见的交叉编译选项添加以下一行或多行</p>
+        <pre><code>target_os =“chromeos” 
+target_os =“openharmony” 
+
+target_cpu =“arm” 
+target_cpu =“x86” 
+target_cpu =“x64”
+</code></pre>
+        <h2>GN不同的构建目标</h2>
+        <p>GN支持多种不同类型的构建目标，以满足不同的构建需求。以下是一些常见的GN构建目标类型：<br>
+          <strong>1、executable</strong>
+        </p>
+        <ul>
+          <li>executable目标可用于构建可执行文件。通常，这是用于最终产品的二进制文件，如应用程序或命令行共计。</li>
+          <li>当你顶一个executable目标时，GN会生成相对应的Ninja规则来编译和链接源代码，生成一个可执行文件。</li>
+          <li>executable目标的源文件通常是C、C++、Rust或其他支持编译成可执行文件的编程语言。</li>
+        </ul>
+        <p><strong>2、action</strong></p>
+        <ul>
+          <li>action目标是一种更为通用的构建规则，用于执行任意命令。这些命令可以是编译器的调用，也可以是任何其他类型的脚本的执行。</li>
+          <li>action可以用于生成源码、运行测试、执行代码生成共计、复制文件等任务。</li>
+          <li>action通常用于构建过程中需要执行的特殊步骤，这些步骤不适合用executable、static_library或shared_library等标准目标来描述。</li>
+        </ul>
+        <p><strong>3、action_foreach</strong></p>
+        <ul>
+          <li>action_foreach目标用于对多个输入文件执行相同的命令。每个输入文件都会触发一次命令的执行。</li>
+          <li>当你定义一个action_foreach目标时，GN会生成相应的Ninja规则来对每个输入文件执行指定的命令。</li>
+          <li>action_foreach目标的输入是一组文件，输出也可以是一组文件。</li>
+          <li>action_foreach通常用于对一组文件执行相同的操作，例如，对多个源文件运行相同的处理步骤。</li>
+        </ul>
+        <p><strong>4、static_library</strong></p>
+        <ul>
+          <li>static_library目标用于构建静态库。静态库是在链接时直接包含在可执行文件中的，不会单独存在。</li>
+          <li>当你定义一个static_library目标时，GN会生成相应的Ninja规则来编译源代码文件，并将它们打包成一个镜头库文件（例如，Linux上的.a文件，Windows上的.lib文件）</li>
+          <li>static_library目标的源文件可以是C、C++、Rust等编程语音的源代码文件。</li>
+          <li>静态库通常用于提供代码给其他模块使用，而不需要单独部署或更新。</li>
+        </ul>
+        <p><strong>5、shared_library</strong></p>
+        <ul>
+          <li>shared_library 目标用于构建动态库或共享库。动态库市在程序运行时动态加载的，不包含在可执行文件中。</li>
+          <li>当你定义一个shared_library目标时，GN会生成相应的Ninja规则来编译源代码文件，并将它们打包成一个动态库文件（例如，Linux上的.so文件，Windows上的.dll文件，Mac上的.dylib文件）</li>
+          <li>shared_library目标的源文件可以是C、C++、Rust等编程语言的源代码文件。</li>
+          <li>动态库通常用于提供可重用的代码，可以独立于应用程序更新和部署。</li>
+        </ul>
+        <p><strong>6、source_set</strong></p>
+        <ul>
+          <li>source_set目标用于收集一组源文件，但不生成库或可执行文件。它通常用于将一组源文件组合在一起，然后作为一个单元包含在其他目标中。</li>
+          <li>当你定义一个source_set目标时，GN会生成相应的Ninja规则来编译源代码文件，但不会生成任何输出文件。</li>
+          <li>source_set目标的源文件可以是C、C++、Rust等编程语言的源代码文件。</li>
+          <li>source_set通常用于组织代码，使得其他目标可以依赖于这个源文件集合，而不需要分别列出每个文件。</li>
+        </ul>
+        <p><strong>7、copy</strong></p>
+        <ul>
+          <li>copy目标用于将文件从一个位置复制到另一个位置。这在将构建结果或资源文件移动到特定目录时很有用。</li>
+          <li>当你定义一个copy目标时，GN会生成相应的Ninja规则来执行文件的复制操作。</li>
+          <li>copy目标的输入是一个文件，输出是文件被复制到的目标位置。</li>
+          <li>copy通常用于在构建过程中管理和分发文件。</li>
+        </ul>
+        <p><strong>8、bundle</strong></p>
+        <ul>
+          <li>bundle目标用于创建一个文件包，通常用于macOS上的应用程序包或框架。</li>
+          <li>当你定义一个bundle目标时，GN会生成相应的Ninja规则来创建文件包。</li>
+          <li>bundle目标的输入是一组文件，输出是一个文件包。</li>
+          <li>bundle通常用于将一组文件打包在一起，以便于分发和安装。</li>
+        </ul>
+        <p><strong>9、loadable_module</strong></p>
+        <ul>
+          <li>loadable_module目标用于构建可以在运行时动态加载的模块，类似于共享库，但在某些操作系统上有特定的用途或行为。</li>
+          <li>当你定义一个loadable_module目标时，GN会生成相应的Ninja规则来编译源代码文件，并将它们打包成一个可动态加载的模块文件。</li>
+          <li>loadable_module目标的源文件可以是C、C++、Rust等编程语言的源代码文件。</li>
+          <li>loadable_module通常用于提供在运行时可以动态加载和卸载的功能模块。</li>
+        </ul>
+        <p><strong>10、group</strong></p>
+        <ul>
+          <li>group目标用于将多个目标组合在一起，以便可以一起引用它们。group本身不生成任何输出文件，但它可以用来简化依赖关系的声明。</li>
+          <li>当你定义一个group目标时，GN会生成相应的Ninja规则来处理依赖关系。</li>
+          <li>group目标可以包含任何类型的其他目标，例如executable、static_library、shared_library等。</li>
+          <li>group通常用于组织复杂的依赖关系，使得构建系统的配置更加简洁和易于管理。</li>
+        </ul>
+        <p><strong>11、alias</strong></p>
+        <ul>
+          <li>alias 目标用于创建一个目标的别名，用来简化对复杂名称的引用。</li>
+          <li>当你定义一个alias目标时，GN会生成相对应的Ninja规则来提供一个目标的替代名称。</li>
+          <li>alias 目标本身不生成任何输出文件，但它可以用来简化依赖关系的声明，特别是在项目中需要重命名目标或提供更短的名称时非常有用。</li>
+        </ul>
+        <p><strong>12、rust_library</strong></p>
+        <ul>
+          <li>rust_library 目标用于构建Rust库。Rust是一种系统编程语言，它提供了内存安全、并发性和其他现代特性。</li>
+          <li>当你定义一个rust_library目标时，GN会生成相应的Ninja规则来编译Rust源代码文件，并将它们打包成一个Rust库文件。</li>
+          <li>rust_library 目标的源文件市Rust语音的源代码文件（通常带有.rs扩展名）。</li>
+          <li>rust_library 可以用于提供Rust代码给其他模块使用，支持静态链接库或动态链接。</li>
+        </ul>
+        <h2>分步教程</h2>
+        <h3>添加构建文件</h3>
+        <p>进入目录<code>examples/simple_build</code>。这是最小GN仓库的根目录。<br>
+          在该目录中有一个<code>tutorial</code>目录，其中有一个文件<code>tutorial.cc</code>文件未连接到构建，在该目录中为我们的新目标创建一个新<code>BUILD.gn</code>文件。</p>
+        <pre><code>executable("tutorial") {
+  sources = [
+    "tutorial.cc",
+  ]
+}
+</code></pre>
+        <p><code>executable("tutorial")</code> 这一行定义了一个新的可执行目标，起名称为tutorial。GN会根据这个名称生成对应的Ninja规则和构建文件。<br>
+          <code>source</code>定义了tutorial目标的源文件列表。
+        </p>
+        <p>现在我们需要让构建知晓这个新的target。打开父目录（<code>simple_build</code>）中的<code>BUILD.gn</code>。GN首先加载这个根文件，然后从此处向外加载所有依赖，所以我们只需要在这个文件中添加对我们新目标的引用。</p>
+        <p>可以在<code>simple_build/BUILD.gn</code></p>
+      </div>
+    </div>
+
+
+
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© 2024 My Website. All rights reserved.</p>
+        <ul class="footer-links">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+    </footer>
+
+
+  </body>
+
+</html>
